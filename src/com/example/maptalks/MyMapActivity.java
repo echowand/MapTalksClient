@@ -243,6 +243,7 @@ public class MyMapActivity extends MapActivity {
 			Toast.makeText(getApplicationContext(), (String)result, Toast.LENGTH_LONG).show();
 			if(((String)result).startsWith("succ")){
 				Toast.makeText(getApplicationContext(), "post success", Toast.LENGTH_LONG).show();	
+				new AsyncRefresher().execute();
 			}
 		}
 		
