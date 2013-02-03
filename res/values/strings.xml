@@ -4,5 +4,9 @@
     <string name="app_name">MapTalks</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-
+    <string name="username_hint">Enter your username</string>
+    <string name="login_btn">Login</string>
+    <string name="title_activity_map">MapActivity</string>
+	<string name="post_hint">Post something!</string>
+	<string name="submit_bt">Submit </string>
 </resources>
