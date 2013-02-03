@@ -205,6 +205,9 @@ public class MyMapActivity extends MapActivity {
 		@Override
 		protected Object doInBackground(Object... arg0) {
 			String postMessage = ((EditText)findViewById(R.id.post_field)).getText().toString();
+			if(postMessage.equals("")){
+				return "Can not post an empty message.";
+			}
 			Location loc = locMngr.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if(loc != null){
 				String latt = Double.toString(loc.getLatitude());

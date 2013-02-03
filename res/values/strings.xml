@@ -9,4 +9,8 @@
     <string name="title_activity_map">MapActivity</string>
 	<string name="post_hint">Post something!</string>
 	<string name="submit_bt">Submit </string>
+	<string name="username">Username:</string>
+	<string name="password">Password:</string>
+	<string name="register_btn">Register</string>
+	<string name="password_hint">Enter your password</string>
 </resources>

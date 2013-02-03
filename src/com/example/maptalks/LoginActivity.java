@@ -51,7 +51,55 @@ public class LoginActivity extends Activity {
 					}
 				}
 		});
+        
+        final Button registerBtn = (Button)findViewById(R.id.registerBtn);
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				new AsyncRegisterAgent().execute();
+			}
+		});
     }
+    
+    private class AsyncRegisterAgent extends AsyncTask{
+
+		@Override
+		protected Object doInBackground(Object... params) {
+			String username = ((EditText)findViewById(R.id.username)).getText().toString();
+			String password = ((EditText)findViewById(R.id.loginPass)).getText().toString();
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost("https://maptalks-manifesto.rhcloud.com/register.php");
+			String resultString = null;
+			try{
+				List<NameValuePair> nameValPair = new ArrayList<NameValuePair>();
+				nameValPair.add(new BasicNameValuePair("username", username));
+				nameValPair.add(new BasicNameValuePair("password", password));
+				httpPost.setEntity(new UrlEncodedFormEntity(nameValPair));
+				HttpResponse response = httpClient.execute(httpPost);
+				HttpEntity entity = response.getEntity();
+				InputStream is = entity.getContent();
+				resultString = convertStreamToString(is);
+				return resultString;
+			}catch(IOException e){
+				
+			}
+			return null;
+		}
+		@Override
+		public void onPostExecute(Object result){
+			if(result != null){
+				if(((String)result).startsWith("succ")){
+					Toast.makeText(getApplicationContext(), "Register successful. Please login now.", Toast.LENGTH_LONG).show();
+				}
+				else{
+					Toast.makeText(getApplicationContext(), "Name already taken. Choose another one please.", Toast.LENGTH_LONG).show();
+				}
+			}
+		}
+    	
+    }
+    
     private class AsyncPostAgent extends AsyncTask{
     	private LoginActivity rootAct;
     	private String username;
